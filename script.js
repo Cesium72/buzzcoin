@@ -91,7 +91,7 @@ var list = [
         mine:() => (coins * 10)
     },{
         name:"??????????????????????????",
-        description:"[CLASSIFIED]",
+        description:"<span style='color:red !important;'>[CLASSIFIED]</span>",
         price:54000000,
         mine:() => (Math.floor((Math.random() * 1200000) + 80000))
     },
@@ -163,5 +163,5 @@ function invest() {
 window.setInterval(auto, 1000);
 for(var i of list) {
     
-    document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${i.name=='??????????????????????????' ? ('<span style="color: red !important;">' + m(i.price) + '</span>') : (m(i.price)) }<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
+    document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${m(i.price)}<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
 }
