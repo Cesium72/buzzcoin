@@ -1,12 +1,12 @@
 # buzzcoin
 
-Thousand - K
-Million - M
-Billion - B
-Trillion - T
-Quadrillion - q
-quintillion - Q
-sextillion - s
-Septillion - S
-o - Octillion
-n - Nonillion
+Thousand - K<br>
+Million - M<br>
+Billion - B<br>
+Trillion - T<br>
+Quadrillion - q<br>
+quintillion - Q<br>
+sextillion - s<br>
+Septillion - S<br>
+Octillion - o<br>
+Nonillion - n<br>
