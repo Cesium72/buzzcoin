@@ -1,9 +1,9 @@
 # buzzcoin
 
-Thousand - K<br>
+Thousand - k<br>
 Million - M<br>
 Billion - B<br>
-Trillion - T<br>
+Trillion - t<br>
 Quadrillion - q<br>
 quintillion - Q<br>
 sextillion - s<br>
