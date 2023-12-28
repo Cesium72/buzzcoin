@@ -88,8 +88,14 @@ var list = [
 ];
 
 //constant interval
+function m(n, d = 1) {
+    x=(''+n).length,p=Math.pow,d=p(10,d)
+    x-=x%3
+    return Math.round(n*d/p(10,x))/d+" kMBtqQsSondUDT"[x/3]
+}
+
 function auto() {
-    rate += (0.05 - Math.random()/10);
+    rate += (-0.05 + Math.random()/10);
     rate = Math.round(rate*100)/100;
     if(rate <= 0) rate = 0.01; 
     document.getElementById("rate").textContent = rate;
@@ -97,7 +103,7 @@ function auto() {
     for(var i of miners) {
         coins += list[i].mine();
     }
-    document.getElementById("coins").textContent = Math.round(coins);
+    document.getElementById("coins").textContent = m(Math.round(coins));
 }
 
 //purchase function
@@ -106,7 +112,7 @@ function purchase(item) {
         cash -= list[item].price;
         miners.push(item);
         document.getElementById("miners").innerHTML += list[item].name+"<br/>"
-        document.getElementById("balance").textContent = `$${cash}`;
+        document.getElementById("balance").textContent = `$${m(cash)}`;
     } else {
         alert(`Sorry, but you do not have enough money to purchase ${list[item].name}.`);
     }
@@ -127,8 +133,8 @@ function exchange() {
         cash += e * rate;
         coins = Math.floor(coins);
         cash = Math.floor(cash);
-        document.getElementById("balance").textContent = `$${cash}`;
-        document.getElementById("coins").textContent = `${coins}`;
+        document.getElementById("balance").textContent = `$${m(cash)}`;
+        document.getElementById("coins").textContent = `${m(coins)}`;
     } else {
         alert("Invalid transaction!");
     }
@@ -138,13 +144,13 @@ function invest() {
     if(e > 0 && e <= cash) {
         cash -=e;
         coins += e * (1/rate);
-        document.getElementById("balance").textContent = `$${cash}`;
-        document.getElementById("coins").textContent = `$${coins}`;
+        document.getElementById("balance").textContent = `$${m(cash)}`;
+        document.getElementById("coins").textContent = `$${m(coins)}`;
     } else {
         alert("Invalid transaction!");
     }
 }
 window.setInterval(auto, 1000);
 for(var i of list) {
-    document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${i.price}<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
+    document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${m(i.price)}<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
 }
