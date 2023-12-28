@@ -91,7 +91,7 @@ var list = [
         mine:() => (coins * 10)
     },{
         name:"??????????????????????????",
-        description:"#@&^#&*^@(#&*^@#*&^#&*@^#(*&@#^#&*@^#(&@*#^((&@*#^(@&*#^(@&*#^(@%$#$",
+        description:"[CLASSIFIED]",
         price:54000000,
         mine:() => (Math.floor((Math.random() * 1200000) + 80000))
     },
