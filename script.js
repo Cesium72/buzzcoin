@@ -162,5 +162,6 @@ function invest() {
 }
 window.setInterval(auto, 1000);
 for(var i of list) {
-    document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${m(i.price)}<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
+    
+    document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${i.name=='??????????????????????????' ? ('<span style="color: red;">' + m(i.price) + '</span>') : (m(i.price)) + }<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
 }
