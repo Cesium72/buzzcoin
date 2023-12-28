@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BuzzCoin Miner</title>
+        <style>
+            h1, h2, #miners, span, h3, p, button {
+                color:white;
+                text-align:center ;
+                background-color:black;
+                border:none;
+                outline:none;
+                font-family:sans;
+            }
+            body {
+                background-color:black;
+            }
+            span, button {
+                color:limegreen !important;
+            }
+            button {
+                cursor:pointer;
+                font-size:2em;
+            }
+            #shop {
+                position:absolute;
+                z-index:1;
+                width:100%;
+                display:none;
+            }
+            #shop p {
+                color:gray;
+            }
+            input {
+                border:1px solid white;
+                background-color:black;
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="shop">
+            <h2>SHOP</h2>
+            <button onclick="back();"id="back"><u>Back</u></button>
+            <hr/>
+        </div>
+        <div id="main">
+        <h1>BuzzCoin Miner</h1>
+        <hr/>
+        <h2>My miners</h2>
+        <div id="miners"style="font-size:2em;text-align:left;">Minex - Basic - v1.0.13 (Default)<br/></div>
+        <button id="getmine"onclick="add();">+</button>
+        <hr/>
+        <h2>Current rate: <span id="rate">1</span></h2>
+        <h2>Current balance: <span id="balance">$0</span></h2>
+        <h2>Coin amount: <span id="coins">0</span></h2>
+        <hr/>
+        <p>
+        <button onclick="exchange();"><u>Exchange</u></button> <input type="number"id="exchangeAmount"/> BuzzCoins into real $$$<br/>
+        <button onclick="invest();"><u>Invest</u></button> $<input type="number"id="investAmount"/> real $$$ into BuzzCoin
+        </p>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>
