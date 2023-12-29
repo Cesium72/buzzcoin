@@ -125,7 +125,7 @@ function auto() {
     }
     for(var l in coins) {
 
-    document.querySelectorAll("tbody tr td:nth-child(4)")[types.indexOf(l)].textContent = coins[l];
+    document.querySelectorAll("tbody tr td:nth-child(4)")[types.indexOf(l)].textContent = m(coins[l]);
     }
     document.getElementById("coins").textContent = m(Math.round(coins[cur]));
 
