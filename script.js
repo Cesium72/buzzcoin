@@ -148,6 +148,8 @@ function auto() {
             });
           }
         }
+
+            showNotification();
             
             coins = {
         "BuzzCoin":0,
