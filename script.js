@@ -1,6 +1,50 @@
 //initial values
-var rate = 1;
-var coins = 0;
+var rate = {
+        "BuzzCoin":1,
+        "ByteCoin":1,
+        "DoggyCoin":1,
+        "NitroCoin":1,
+        "ScubaCoin":1,
+        "LegendCoin":1,
+        "SuperCoin":1,
+        "CatCoin":1,
+        "KittyCoin":1,
+        "RubberDuckCoin":1,
+        "TrumpCoin":1,
+        "BidenCoin":1,
+        "Coal":1,
+        "Iron":1,
+        "Gold":1,
+        "Silver":1,
+        "Steel":1,
+        "Diamond":1,
+        "Emerald":1,
+        "Amberite":1,
+    };
+var cur = "BuzzCoin";
+var coins = 
+    {
+        "BuzzCoin":0,
+        "ByteCoin":0,
+        "DoggyCoin":0,
+        "NitroCoin":0,
+        "ScubaCoin":0,
+        "LegendCoin":0,
+        "SuperCoin":0,
+        "CatCoin":0,
+        "KittyCoin":0,
+        "RubberDuckCoin":0,
+        "TrumpCoin":0,
+        "BidenCoin":0,
+        "Coal":0,
+        "Iron":0,
+        "Gold":0,
+        "Silver":0,
+        "Steel":0,
+        "Diamond":0,
+        "Emerald":0,
+        "Amberite":0,
+    };
 var cash = 0;
 var miners = [0];
 var list = [
@@ -78,22 +122,22 @@ var list = [
         name:"Coiniverse - Doubler",
         description:"This elite miner from Coiniverse doubles your coins every mine!",
         price:10000000000,
-        mine:() => (coins)
+        mine:() => (coins[cur])
     },{
         name:"The Minor Mazo Miner",
         description:"a cheaper version of the Mazo Miner, this is the second best crypto miner in the game!",
         price:30000000000,
-        mine:() => (coins * 8)
+        mine:() => (coins[cur] * 8)
     },{
         name:"Mazo Miner",
         description:"This miner is top secret! It is the best miner in the game, and will be until, well, never!",
         price:100000000000,
-        mine:() => (coins * 10)
+        mine:() => (coins[cur] * 10)
     },{
         name:"??????????????????????????",
         description:"<span style='color:red !important;'>[CLASSIFIED]</span>",
         price:10000000000003,
-        mine:() => (coins * 15 + 90000000)
+        mine:() => (coins[cur] * 15 + 90000000)
     },
 ];
 
@@ -105,19 +149,45 @@ function m(n, d = 1) {
 }
 
 function auto() {
-    rate += (-0.05 + Math.random()/10);
-    rate = Math.round(rate*100)/100;
-    if(rate <= 0) rate = 0.01; 
-    document.getElementById("rate").textContent = rate;
+    for(var l in rate) {
+    rate[l] += (-0.05 + Math.random()/10);
+    rate[l] = Math.round(rate[l]*100)/100;
+    if(rate[l] <= 0) rate[l] = 0.01; 
+    document.getElementById("rate").textContent = rate[cur];
+    }
 
     for(var i of miners) {
-        coins += list[i].mine();
+        coins[cur] += list[i].mine();
     }
-    document.getElementById("coins").textContent = m(Math.round(coins));
+    document.getElementById("coins").textContent = m(Math.round(coins[cur]));
 
     if(cash >= 200000000000) {
         if(confirm('You have unlocked ability to advance to next level and new currencies\nIt will be a rebirth, and all your money and miners will be cleared\n\nPress OK if you would like to advance\nPress Cancel if you decline upgrade')) {
-            window.clearInterval(autoLoop);
+            coins = {
+        "BuzzCoin":0,
+        "ByteCoin":0,
+        "DoggyCoin":0,
+        "NitroCoin":0,
+        "ScubaCoin":0,
+        "LegendCoin":0,
+        "SuperCoin":0,
+        "CatCoin":0,
+        "KittyCoin":0,
+        "RubberDuckCoin":0,
+        "TrumpCoin":0,
+        "BidenCoin":0,
+        "Coal":0,
+        "Iron":0,
+        "Gold":0,
+        "Silver":0,
+        "Steel":0,
+        "Diamond":0,
+        "Emerald":0,
+        "Amberite":0,
+    };
+            cash = 0;
+            miners = [0];
+            cur = "Coal";
         }
     }
 }
@@ -144,13 +214,13 @@ function back() {
 
 function exchange() {
     var e = parseInt(document.getElementById("exchangeAmount").value);
-    if(e > 0 && e <= coins) {
-        coins -=e;
-        cash += e * rate;
-        coins = Math.floor(coins);
+    if(e > 0 && e <= coins[cur]) {
+        coins[cur] -=e;
+        cash += e * rate[cur];
+        coins[cur] = Math.floor(coins[cur]);
         cash = Math.floor(cash);
         document.getElementById("balance").textContent = `$${m(cash)}`;
-        document.getElementById("coins").textContent = `${m(coins)}`;
+        document.getElementById("coins").textContent = `${m(coins[cur])}`;
     } else {
         alert("Invalid transaction!");
     }
@@ -159,9 +229,9 @@ function invest() {
     var e = parseInt(document.getElementById("investAmount").value);
     if(e > 0 && e <= cash) {
         cash -=e;
-        coins += e * (1/rate);
+        coins[cur] += e * (1/rate[cur]);
         document.getElementById("balance").textContent = `$${m(cash)}`;
-        document.getElementById("coins").textContent = `$${m(coins)}`;
+        document.getElementById("coins").textContent = `$${m(coins[cur])}`;
     } else {
         alert("Invalid transaction!");
     }
