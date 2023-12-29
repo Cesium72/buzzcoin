@@ -154,6 +154,7 @@ function auto() {
     rate[l] = Math.round(rate[l]*100)/100;
     if(rate[l] <= 0) rate[l] = 0.01; 
     document.getElementById("rate").textContent = rate[cur];
+    document.querySelectorAll("tbody tr")[l][1];
     }
 
     for(var i of miners) {
