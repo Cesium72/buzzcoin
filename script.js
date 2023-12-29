@@ -131,6 +131,24 @@ function auto() {
 
     if(cash >= 200000000000) {
         if(confirm('You have unlocked ability to advance to next level and new currencies\nIt will be a rebirth, and all your money and miners will be cleared\n\nPress OK if you would like to advance\nPress Cancel if you decline upgrade')) {
+
+        function showNotification() {
+          if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification\nPlease enable it\n\nAnyway, you have unlocked the following achievment:\n\nRebirth #1\n----------------\nComplete your first rebirth, and unlock the next stage of the game including new miners, and currencies");
+          } else if (Notification.permission === "granted") {
+            // Create a notification
+            const notification = new Notification("Unlocked achievment: Rebirth #1", {body: 'Complete your first rebirth, and unlock the next stage of the game including new miners, and currencies'});
+          } else if (Notification.permission !== "denied") {
+            // Request permission
+            Notification.requestPermission().then(function(permission) {
+              if (permission === "granted") {
+                // Create a notification
+            const notification = new Notification("Unlocked achievment: Rebirth #1", {body: 'Complete your first rebirth, and unlock the next stage of the game including new miners, and currencies'});
+              }
+            });
+          }
+        }
+            
             coins = {
         "BuzzCoin":0,
         "ByteCoin":0,
