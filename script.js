@@ -93,7 +93,7 @@ var list = [
         name:"??????????????????????????",
         description:"<span style='color:red !important;'>[CLASSIFIED]</span>",
         price:10000000000003,
-        mine:() => (coins * 15 + 90000000))
+        mine:() => (coins * 15 + 90000000)
     },
 ];
 
