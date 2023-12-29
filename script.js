@@ -185,9 +185,14 @@ function auto() {
         "Emerald":0,
         "Amberite":0,
     };
-            cash = 0;
-            miners = [0];
-            cur = "Coal";
+        cash = 0;
+        document.getElementById("balance").textContent = `$${m(cash)}`;
+        document.getElementById("coins").textContent = `${m(coins[cur])}`;
+        
+        miners = [0];
+        document.getElmentById('miners').innerHTML = 'Minex - Basic - v1.0.13 (Default)<br/>';
+        cur = "Coal";
+        
         }
     }
 }
