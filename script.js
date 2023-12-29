@@ -1,50 +1,13 @@
 //initial values
-var rate = {
-        "BuzzCoin":1,
-        "ByteCoin":1,
-        "DoggyCoin":1,
-        "NitroCoin":1,
-        "ScubaCoin":1,
-        "LegendCoin":1,
-        "SuperCoin":1,
-        "CatCoin":1,
-        "KittyCoin":1,
-        "RubberDuckCoin":1,
-        "TrumpCoin":1,
-        "BidenCoin":1,
-        "Coal":1,
-        "Iron":1,
-        "Gold":1,
-        "Silver":1,
-        "Steel":1,
-        "Diamond":1,
-        "Emerald":1,
-        "Amberite":1,
-    };
+var rate = {};
 var cur = "BuzzCoin";
 var coins = 
-    {
-        "BuzzCoin":0,
-        "ByteCoin":0,
-        "DoggyCoin":0,
-        "NitroCoin":0,
-        "ScubaCoin":0,
-        "LegendCoin":0,
-        "SuperCoin":0,
-        "CatCoin":0,
-        "KittyCoin":0,
-        "RubberDuckCoin":0,
-        "TrumpCoin":0,
-        "BidenCoin":0,
-        "Coal":0,
-        "Iron":0,
-        "Gold":0,
-        "Silver":0,
-        "Steel":0,
-        "Diamond":0,
-        "Emerald":0,
-        "Amberite":0,
-    };
+    {};
+    const types = ["BuzzCoin","ByteCoin","DoggyCoin","NitroCoin","ScubaCoin","LegendCoin","SuperCoin","CatCoin","KittyCoin","RubberDuckCoin","TrumpCoin","BidenCoin","Coal","Iron","Gold","Silver","Steel","Diamond","Emerald","Amberite"]
+    for(var i of types) {
+        rate[i] = 1;
+        coins[i] = 0;
+    }
 var cash = 0;
 var miners = [0];
 var list = [
@@ -153,12 +116,16 @@ function auto() {
     rate[l] += (-0.05 + Math.random()/10);
     rate[l] = Math.round(rate[l]*100)/100;
     if(rate[l] <= 0) rate[l] = 0.01; 
-    document.getElementById("rate").textContent = rate[cur];
-    document.querySelectorAll("tbody tr td:nth-child(2)")[l].textContent = rate[l];
+    document.querySelectorAll("tbody tr td:nth-child(2)")[types.indexOf(l)].textContent = rate[l];
     }
+    document.getElementById("rate").textContent = rate[cur];
 
     for(var i of miners) {
         coins[cur] += list[i].mine();
+    }
+    for(var l in coins) {
+
+    document.querySelectorAll("tbody tr td:nth-child(4)")[types.indexOf(l)].textContent = coins[l];
     }
     document.getElementById("coins").textContent = m(Math.round(coins[cur]));
 
