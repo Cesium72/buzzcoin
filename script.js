@@ -114,6 +114,12 @@ function auto() {
         coins += list[i].mine();
     }
     document.getElementById("coins").textContent = m(Math.round(coins));
+
+    if(cash >= 200000000000) {
+        if(confirm('You have unlocked ability to advance to next level and new currencies\nIt will be a rebirth, and all your money and miners will be cleared\n\nPress OK if you would like to advance\nPress Cancel if you decline upgrade')) {
+            window.clearInterval(autoLoop);
+        }
+    }
 }
 
 //purchase function
@@ -160,7 +166,11 @@ function invest() {
         alert("Invalid transaction!");
     }
 }
-window.setInterval(auto, 1000);
+
+    
+var autoLoop = window.setInterval(auto, 1000);
+
+    
 for(var i of list) {
     
     document.getElementById("shop").innerHTML += `<h3>${i.name}</h3><p>${i.description}<br/>Price: $${m(i.price)}<br/><button onclick="purchase(${list.indexOf(i)})">Buy</button></p>`;
