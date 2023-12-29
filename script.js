@@ -190,7 +190,7 @@ function auto() {
         document.getElementById("coins").textContent = `${m(coins[cur])}`;
         
         miners = [0];
-        document.getElmentById('miners').innerHTML = 'Minex - Basic - v1.0.13 (Default)<br/>';
+        document.getElementById('miners').innerHTML = 'Minex - Basic - v1.0.13 (Default)<br/>';
         cur = "Coal";
         
         }
