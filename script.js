@@ -92,8 +92,8 @@ var list = [
     },{
         name:"??????????????????????????",
         description:"<span style='color:red !important;'>[CLASSIFIED]</span>",
-        price:54000000,
-        mine:() => (Math.floor((Math.random() * 1200000) + 80000))
+        price:10000000000003,
+        mine:() => (coins * 15 + 90000000))
     },
 ];
 
