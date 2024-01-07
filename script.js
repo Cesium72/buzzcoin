@@ -3,10 +3,13 @@ var rate = {};
 var cur = "BuzzCoin";
 var coins = 
     {};
-    const types = ["BuzzCoin","ByteCoin","DoggyCoin","NitroCoin","ScubaCoin","LegendCoin","SuperCoin","CatCoin","KittyCoin","RubberDuckCoin","TrumpCoin","BidenCoin","Coal","Iron","Gold","Silver","Steel","Diamond","Emerald","Amberite"]
+    var per = {};
+    const types = ["BuzzCoin","ByteCoin","DoggyCoin","NitroCoin","ScubaCoin","LegendCoin","SuperCoin","CatCoin","KittyCoin","RubberDuckCoin","TrumpCoin","BidenCoin","Coal","Iron","Gold","Silver","Steel","Diamond","Emerald","Amberite"];
+    const perVals = [1,8,9,40,30,90,120,85,70,280,0.001,4,3,4,10,20,8,90,45,274];
     for(var i of types) {
         rate[i] = 1;
         coins[i] = 0;
+        per[i] = perVals[types.indexOf(i)]
     }
 var cash = 0;
 var miners = [0];
@@ -108,7 +111,7 @@ var list = [
 function m(n, d = 1) {
     x=(''+n).length,p=Math.pow,d=p(10,d)
     x-=x%3
-    return Math.floor(n*d/p(10,x))/d+" kMBtqQsSondUDT"[x/3]
+    return Math.round(n*d/p(10,x))/d+" kMBtqQsSondUDT"[x/3]
 }
 
 function auto() {
@@ -125,32 +128,12 @@ function auto() {
     }
     for(var l in coins) {
 
-    document.querySelectorAll("tbody tr td:nth-child(4)")[types.indexOf(l)].textContent = m(coins[l]);
+    document.querySelectorAll("tbody tr td:nth-child(4)")[types.indexOf(l)].textContent = coins[l];
     }
     document.getElementById("coins").textContent = m(Math.round(coins[cur]));
 
     if(cash >= 200000000000) {
         if(confirm('You have unlocked ability to advance to next level and new currencies\nIt will be a rebirth, and all your money and miners will be cleared\n\nPress OK if you would like to advance\nPress Cancel if you decline upgrade')) {
-
-        function showNotification() {
-          if (!("Notification" in window)) {
-            alert("This browser does not support desktop notification\nPlease enable it\n\nAnyway, you have unlocked the following achievment:\n\nRebirth #1\n----------------\nComplete your first rebirth, and unlock the next stage of the game including new miners, and currencies");
-          } else if (Notification.permission === "granted") {
-            // Create a notification
-            const notification = new Notification("Unlocked achievment: Rebirth #1", {body: 'Complete your first rebirth, and unlock the next stage of the game including new miners, and currencies'});
-          } else if (Notification.permission !== "denied") {
-            // Request permission
-            Notification.requestPermission().then(function(permission) {
-              if (permission === "granted") {
-                // Create a notification
-            const notification = new Notification("Unlocked achievment: Rebirth #1", {body: 'Complete your first rebirth, and unlock the next stage of the game including new miners, and currencies'});
-              }
-            });
-          }
-        }
-
-            showNotification();
-            
             coins = {
         "BuzzCoin":0,
         "ByteCoin":0,
@@ -209,7 +192,7 @@ function exchange() {
     var e = parseInt(document.getElementById("exchangeAmount").value);
     if(e > 0 && e <= coins[cur]) {
         coins[cur] -=e;
-        cash += e * rate[cur];
+        cash += e * rate[cur] * per[cur];
         coins[cur] = Math.floor(coins[cur]);
         cash = Math.floor(cash);
         document.getElementById("balance").textContent = `$${m(cash)}`;
@@ -222,7 +205,7 @@ function invest() {
     var e = parseInt(document.getElementById("investAmount").value);
     if(e > 0 && e <= cash) {
         cash -=e;
-        coins[cur] += e * (1/rate[cur]);
+        coins[cur] += e * per[cur] / rate[cur];
         document.getElementById("balance").textContent = `$${m(cash)}`;
         document.getElementById("coins").textContent = `$${m(coins[cur])}`;
     } else {
