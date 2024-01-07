@@ -192,7 +192,7 @@ function exchange() {
     var e = parseInt(document.getElementById("exchangeAmount").value);
     if(e > 0 && e <= coins[cur]) {
         coins[cur] -=e;
-        cash += e * rate[cur] * per[cur];
+        cash += e * rate[cur] / per[cur];
         coins[cur] = Math.floor(coins[cur]);
         cash = Math.floor(cash);
         document.getElementById("balance").textContent = `$${m(cash)}`;
